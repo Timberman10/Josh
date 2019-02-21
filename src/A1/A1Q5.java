@@ -28,7 +28,6 @@ public class A1Q5 {
     System.out.println("Please enter the y coordinate of your second point");
     int y2 = input.nextInt();
     //give slope of line
-    System.out.print("Your line has a slope of ");
-    System.out.println((y2 - y1)/(x2 - x1));
+    System.out.println("Your line has a slope of " + ((y2 - y1)/(x2 - x1)));
     }
 }

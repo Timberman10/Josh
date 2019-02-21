@@ -22,9 +22,7 @@ public class A1Q2 {
         //create new variable
         int temperature = input.nextInt();
         //give temperature in farenheit
-        System.out.print("it is currently ");
-        System.out.print(temperature*9/5+32 );
-        System.out.print(" degrees farenheit");
+        System.out.print("it is currently " + (temperature*9/5+32 ) + " degrees farenheit");
         System.out.println("");
     }
 }

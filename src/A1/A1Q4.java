@@ -19,7 +19,6 @@ public class A1Q4 {
         Scanner input = new Scanner (System.in);
         System.out.println("Enter the radius of a circle in cm");
         double rad = input.nextDouble();
-        System.out.print("the area of your circle is ");
-        System.out.println(Math.PI * Math.pow(rad,2));
+        System.out.println ("the area of your circle is " + (Math.PI * Math.pow(rad,2)));
     }
 }

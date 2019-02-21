@@ -25,11 +25,9 @@ public class A1Q1 {
         System.out.println("please insert another");
         int numtwo = input.nextInt();
         //show answer
-        System.out.print("The sum of those two integers is ");
-        System.out.print(numone + numtwo);
+        System.out.print("The sum of those two integers is " + (numone + numtwo));
         System.out.println();
-        System.out.print("The product of those two integers is ");
-        System.out.print(numone * numtwo);
+        System.out.print("The product of those two integers is " + (numone * numtwo));
         System.out.println("");
    }
 }

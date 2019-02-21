@@ -22,10 +22,7 @@ public class A1Q3 {
         System.out.println("Please enter two integers on separate lines");
         int numone = input.nextInt();
         int numtwo = input.nextInt();
-        System.out.print("Your answer is ");
-        System.out.print(numone / numtwo);
-        System.out.print(" with a remainder of ");
-        System.out.println();
-        System.out.print(numone % numtwo);
+        System.out.print("Your answer is " + (numone / numtwo));
+        System.out.println(" with a remainder of " + (numone % numtwo));
     }
 }
