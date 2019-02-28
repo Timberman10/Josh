@@ -18,25 +18,25 @@ public class A2Q7 {
      */
     public static void main(String[] args) {
         // create new scanner
-        Scanner input = new Scanner (System.in);
+        Scanner input = new Scanner(System.in);
         //ask for their fizzbuzz number
         System.out.println("Please enter a number to play FizzBuzz");
-        int num = input.nextInt();
+        int number = input.nextInt();
         //tell them what to day
         System.out.print("You should say ");
-        if (num % 3 == 0){
+        if (number % 3 == 0) {
             System.out.print("Fizz");
-            
+
         }
-                if (num % 5 == 0){
+        if (number % 5 == 0) {
             System.out.print("Buzz");
-            
+
         }
-                        if (num % 3 != 0 && num % 5 != 0){
-            System.out.print(num);
-            
+        if (number % 3 != 0 && number % 5 != 0) {
+            System.out.print(number);
+
         }
-                        System.out.println("");
+        System.out.println("");
     }
-    
+
 }

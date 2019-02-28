@@ -21,17 +21,17 @@ public class A2Q1 {
         Scanner input = new Scanner(System.in);
         //ask for input
         System.out.println("Please input two integers and I will tell you which is bigger");
-        int numone = input.nextInt();
-        int numtwo = input.nextInt();
+        int numOne = input.nextInt();
+        int numTwo = input.nextInt();
         //tell them which number is bigger 
-        if(numone > numtwo){
-            System.out.println(numone + " is bigger than " + numtwo);
+        if(numOne > numTwo){
+            System.out.println(numOne + " is bigger than " + numTwo);
     }
-        if(numtwo > numone){
-            System.out.println(numtwo + " is bigger than " + numone);   
+        if(numTwo > numOne){
+            System.out.println(numTwo + " is bigger than " + numOne);   
 }
-        if(numtwo == numone){
-            System.out.println(numone + " is equal to " + numtwo);
+        if(numTwo == numOne){
+            System.out.println(numOne + " is equal to " + numTwo);
         }
     }
 }

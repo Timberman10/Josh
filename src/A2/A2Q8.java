@@ -18,26 +18,26 @@ public class A2Q8 {
      */
     public static void main(String[] args) {
         // create new scanner
-        Scanner input = new Scanner (System.in);
+        Scanner input = new Scanner(System.in);
         //ask for speed limit and speed
         System.out.println("Please enter the speed limit");
         int limit = input.nextInt();
         System.out.println("Please enter the recorded speed of the car");
         int car = input.nextInt();
         //tell them they are following the law
-        if (car - limit <= 0){
+        if (car - limit <= 0) {
             System.out.println("congrats, you are within the speed limit");
         }
         //tell them their fine
-        if (car - limit >= 1 && car - limit <= 20){
+        if (car - limit >= 1 && car - limit <= 20) {
             System.out.println("Stop right there criminal scum, you are speeding and will be fined $100");
         }
-         if (car - limit >= 21 && car - limit <= 30){
+        if (car - limit >= 21 && car - limit <= 30) {
             System.out.println("Stop right there criminal scum, you are speeding and will be fined $270");
         }
-          if (car - limit >= 31){
+        if (car - limit >= 31) {
             System.out.println("Stop right there criminal scum, you are speeding and will be fined $500");
         }
     }
-    
+
 }

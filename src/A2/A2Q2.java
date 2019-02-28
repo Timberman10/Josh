@@ -21,14 +21,14 @@ public class A2Q2 {
         Scanner input = new Scanner(System.in);
         //ask themn to input two integers
         System.out.println("Please input two integers and I will put them in ascending order");
-        int numone = input.nextInt();
-        int numtwo = input.nextInt();
+        int numOne = input.nextInt();
+        int numTwo = input.nextInt();
         //tell them the nubmers in ascending order
-        if(numone < numtwo || numtwo == numone){
-            System.out.println("Your numbers in ascending order are " + numone + ", " + numtwo);
+        if(numOne < numTwo || numTwo == numOne){
+            System.out.println("Your numbers in ascending order are " + numOne + ", " + numTwo);
     }
-        if(numtwo < numone){
-            System.out.println("Your numbers in ascending order are " + numtwo + ", " + numone);   
+        if(numTwo < numOne){
+            System.out.println("Your numbers in ascending order are " + numTwo + ", " + numOne);   
 }
     }
     

@@ -18,17 +18,17 @@ public class A2Q3 {
      */
     public static void main(String[] args) {
         // create new scanner
-                Scanner input = new Scanner(System.in);
-                //ask them for an integer
+        Scanner input = new Scanner(System.in);
+        //ask them for an integer
         System.out.println("Please input an integer and I will tell you if it is even or odd");
         int number = input.nextInt();
         //check for remainder and tell them if it is even or odd
-       if(number % 2 > 0){
-           System.out.println("your number is odd");
-       }
-       if(number % 2 == 0){
-           System.out.println("your number is even");
-       }
+        if (number % 2 > 0) {
+            System.out.println("your number is odd");
+        }
+        if (number % 2 == 0) {
+            System.out.println("your number is even");
+        }
     }
-    
+
 }
