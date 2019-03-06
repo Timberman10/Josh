@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package A2;
+package A3;
 
 import java.util.Scanner;
 
@@ -11,30 +11,25 @@ import java.util.Scanner;
  *
  * @author vuksj2164
  */
-public class A2Q7 {
+public class A3Q5 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // create new scanner
         Scanner input = new Scanner(System.in);
-        //ask for their fizzbuzz number
-        System.out.println("Please enter a number to play FizzBuzz");
+        //ask for a number between 1 and 5
+        System.out.println("please input a number between 1 and 5 ");
         int number = input.nextInt();
-        //tell them what to say 
-        System.out.print("You should say ");
-        if (number % 3 == 0) {
-            System.out.print("Fizz");
-
+        //make sure it is between 1 and 5
+        while (number > 5 || number < 1) {
+            System.out.println("no between 1 and 5");
+            number = input.nextInt();
         }
-        if (number % 5 == 0) {
-            System.out.print("Buzz");
-
-        }
-        if (number % 3 != 0 && number % 5 != 0) {
-            System.out.print(number);
-
+        // print out "number" amount os * 
+        while (number > 0) {
+            number = number - 1;
+            System.out.print("*");
         }
         System.out.println("");
     }
