@@ -18,7 +18,7 @@ public class A2Q9 {
      */
     public static void main(String[] args) {
         // create new scanner
-        Scanner input = new Scanner (System.in);
+        Scanner input = new Scanner(System.in);
         //ask for three integers
         System.out.println("Please enter an integer");
         int a = input.nextInt();
@@ -27,12 +27,17 @@ public class A2Q9 {
         System.out.println("Please enter one last integer");
         int c = input.nextInt();
         //calculate whether it is a Pythagorean triple or not and tell them
-        if (Math.pow(a,2) + Math.pow(b,2) == Math.pow(c,2)){
+        if (Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2)) {
             System.out.println("This is a Pythagorean triple");
         }
-        else{
+        if (Math.pow(c, 2) + Math.pow(b, 2) == Math.pow(a, 2)) {
+            System.out.println("This is a Pythagorean triple");
+        }
+        if (Math.pow(a, 2) + Math.pow(c, 2) == Math.pow(b, 2)) {
+            System.out.println("This is a Pythagorean triple");
+        } else {
             System.out.println("this isn't a Pythagorean triple");
         }
     }
-    
+
 }

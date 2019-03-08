@@ -42,7 +42,7 @@ public class A2Q5 {
             System.out.println("how is this even a tea party, you got no tea");
                 }
                 //tell them their tea party is great
-                if(tea * 2 <= candy && tea > 0 || candy * 2 <= tea && candy > 0){
+                if(tea * 2 <= candy && tea > 5 || candy * 2 <= tea && candy > 5){
             System.out.println("this a great tea party");
                 }
                 //tell them their tea party is good
