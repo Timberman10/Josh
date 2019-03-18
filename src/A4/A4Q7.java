@@ -29,7 +29,7 @@ public class A4Q7 {
         if (x == true) {
             int first = word.indexOf(checkX);
             while (first >= 0) {
-                first = word.indexOf(checkX, first);
+                first = word.indexOf(checkX, first + 1);
                 countX++;
             }
             
@@ -37,12 +37,12 @@ public class A4Q7 {
         if (y == true) {
             int first = word.indexOf(checkY);
             while (first >= 0) {
-                first = word.indexOf(checkX, first);
+                first = word.indexOf(checkY, first + 1);
                 countY++;
             }
             
         }
-        if (x == y){
+        if (countX == countY){
             System.out.println("the string is balanced, as all thigns should be");
         }
         else{

@@ -18,13 +18,17 @@ public class A4Q1 {
      */
     public static void main(String[] args) {
         Scanner input = new Scanner (System.in);
+        //asl user for a word 
         System.out.println("Please enter a word");
         String word = input.nextLine();
+        //check the length of the word
         int length = word.length();
+        //give the first letter for a one letter word
         if (length == 1){
             String two = word.substring(0,1);
         System.out.println("the first letter is " + two);
         }
+        //give the first two letteres
         if (length > 1){
         String two = word.substring(0,2);
         System.out.println("the first two letter are " + two);
