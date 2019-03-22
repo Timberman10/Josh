@@ -18,8 +18,10 @@ public class A4Q6 {
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        //ask for a word
         System.out.println("Please enter a word");
         String word = input.nextLine();
+        //replace the first two letters as with nothing
         word = word.replaceFirst("a","");
         word = word.replaceFirst("a","");
         System.out.println("your word without the first two letter 'a's is " + word);

@@ -19,10 +19,13 @@ public class A4Q4 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int count = 0;
+        //ask them for their word 
         System.out.println("Please enter a word");
         String word = input.nextLine();
+        //create a check for the word code
         String check = "code";
         boolean code = word.contains(check);
+        //if it contains code count how many times
         if (code == true) {
             int first = word.indexOf(check);
             while (first >= 0) {
@@ -34,6 +37,7 @@ public class A4Q4 {
             } else {
                 System.out.println("your word contains " + count + " codes");
             }
+            //if it does not contain any codes tell them that
         } else if (code == false) {
             System.out.println("your word does not contain any codes");
         }

@@ -18,14 +18,18 @@ public class A4Q7 {
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        //create two counters
         int countX = 0;
         int countY = 0;
+        //ask for a word
         System.out.println("Please enter a word");
         String word = input.nextLine();
+        //check for x and y
         String checkX = "x";
         String checkY = "y";
          boolean x = word.contains(checkX);
          boolean y = word.contains(checkY);
+         //count how many x
         if (x == true) {
             int first = word.indexOf(checkX);
             while (first >= 0) {
@@ -34,6 +38,7 @@ public class A4Q7 {
             }
             
         }
+        //count how many y
         if (y == true) {
             int first = word.indexOf(checkY);
             while (first >= 0) {
@@ -42,6 +47,7 @@ public class A4Q7 {
             }
             
         }
+        //check if they are equal
         if (countX == countY){
             System.out.println("the string is balanced, as all thigns should be");
         }

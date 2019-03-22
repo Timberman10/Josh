@@ -18,8 +18,10 @@ public class A4Q5 {
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        //ask for a word 
         System.out.println("Please enter a word");
         String word = input.nextLine();
+        //replace the letter a with nothing
         word = word.replaceAll("a","");
         System.out.println("your word without the letter 'a' is " + word);
     }

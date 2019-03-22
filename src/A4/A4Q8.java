@@ -18,14 +18,18 @@ public class A4Q8 {
      */
     public static void main(String[] args) {
        Scanner input = new Scanner(System.in);
+       //ask for a word
         System.out.println("please enter a word");
         String word = input.nextLine();
+        //check length
         int length = word.length();
+        //re ask if they dont type anything
         while (length == 0){
            System.out.println("please enter a word"); 
            word = input.nextLine();
            length = word.length();
         }
+        //print word backwards
         char letter = word.charAt(0);
         while(length != 0){
              letter = word.charAt(length-1);
