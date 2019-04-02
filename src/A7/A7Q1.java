@@ -5,6 +5,8 @@
  */
 package A7;
 
+import java.util.Scanner;
+
 /**
  *
  * @author vuksj2164
@@ -15,7 +17,15 @@ public class A7Q1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner input = new Scanner(System.in);
+        System.out.println("please input the radius of your circle");
+        double rad = input.nextDouble();
+        System.out.println("the area of the circle is " + circleArea(rad));
     }
-    
+
+    public static double circleArea(double rad) {
+        double area = Math.PI * Math.pow(rad, 2);
+        return area;
+    }
+
 }
