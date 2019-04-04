@@ -21,6 +21,11 @@ public class A5Q5 {
        //ask the user for input 
         System.out.println("what number of the Fibonacci sequence would you like");
         int amount = input.nextInt();
+        //check if its 0 
+        if (amount == 0){
+           System.out.println("please enter a number greater than 0");
+           amount = input.nextInt();
+       }
         int fib[] = new int[amount];
         fib[0] = 0;
         //make sure that it wont leave the array

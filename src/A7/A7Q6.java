@@ -11,24 +11,22 @@ import java.util.Scanner;
  *
  * @author vuksj2164
  */
-public class A7Q1 {
+public class A7Q6 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //ask user for their circle's radius
         Scanner input = new Scanner(System.in);
-        System.out.println("please input the radius of your circle");
-        double rad = input.nextDouble();
-        //return the area to them
-        System.out.println("the area of the circle is " + circleArea(rad));
+        //ask for a number
+        System.out.println("please enter a number");
+        int number = input.nextInt();
+        lastDigit(number);
     }
 
-    public static double circleArea(double rad) {
-        //find area
-        double area = Math.PI * Math.pow(rad, 2);
-        return area;
+    public static void lastDigit(int number) {
+        //find the last digit 
+        int digit = number % 10;
+        System.out.println(digit);
     }
-
 }

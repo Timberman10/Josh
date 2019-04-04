@@ -16,24 +16,30 @@ public class A7Q3 {
     /**
      * @param args the command line arguments
      */
-   /* public static void main(String[] args) {
-        int factors[] = new int[user(num)];
+    public static void main(String[] args) {
+        int num = 0;
+        int numTwo = ask(num);
+        int factors[] = new int[numTwo];
         int inc2 = 0;
-        for (int inc = 0; inc < user(num); inc++) {
-            int remainder = number % inc;
+        //find all the divisors and place them in an array
+        for (int inc = 1; inc <= numTwo; inc++) {
+            int remainder = numTwo % inc;
             if (remainder == 0) {
                 factors[inc2] = inc;
                 inc2++;
             }
         }
-        for (int inc = 0; inc < number; inc++) {
+        //print all the divisors
+        for (int inc = (inc2 - 1); inc >= 0; inc--) {
             System.out.println(factors[inc]);
         }
     }
-    public static int user(int num) {
+
+    public static int ask(int num) {
         Scanner input = new Scanner(System.in);
+        //ask the user for a number
         System.out.println("please input an integer");
         int number = input.nextInt();
         return number;
     }
-}/*
+}
