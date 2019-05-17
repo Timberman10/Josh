@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -145,9 +147,20 @@ public class FinalProject extends JComponent implements ActionListener {
             Color words = new Color(51, 64, 183);
             g.setColor(words);
             g.setFont(titleScreen);
-            g.drawString("Zone Zero", 200, 200);
+            g.drawString("Zone Zero", 200,350);
+            g.setColor(Color.RED);
+            g.fill3DRect(300, 500, 150, 80, up);
+            g.setColor(Color.RED);
+            g.fill3DRect(700, 500, 150, 80, up);
+            g.setColor(words);
+            g.setFont(gameOverLine);
+            g.drawString("Start", 320,550);
+            g.drawString("High", 730,535);
+            g.drawString("Scores", 710,565);
+           // g.setFont(gameOverLine);
+         //   g.drawString("Press Enter to Start", 380,500);
             int[] xPoints = {0, 50, 250};
-            int[] yPoints = {800, 800, 360};
+            int[] yPoints = {800, 800, 400};
             g.fillPolygon(xPoints, yPoints, 3);
             int[] xPoints2 = {1200, 1150, 950};
             int[] yPoints2 = {800, 800, 400};
@@ -155,6 +168,15 @@ public class FinalProject extends JComponent implements ActionListener {
             int[] xPoints3 = {75, 125, 280};
             int[] yPoints3 = {800, 800, 400};
             g.fillPolygon(xPoints3, yPoints3, 3);
+            int[] xPoints4 = {1125, 1075, 920};
+            int[] yPoints4 = {800, 800, 400};
+            g.fillPolygon(xPoints4, yPoints4, 3);
+            int[] xPoints5 = {-75, -25, 220};
+            int[] yPoints5 = {800, 800, 400};
+            g.fillPolygon(xPoints5, yPoints5, 3);
+            int[] xPoints6 = {1275, 1225, 980};
+            int[] yPoints6 = {800, 800, 400};
+            g.fillPolygon(xPoints6, yPoints6, 3);
         }
         if (deadPlayer && intro == false) {
             deadBomb1 = true;
@@ -211,7 +233,7 @@ public class FinalProject extends JComponent implements ActionListener {
             g.fillRect(536, 524, 10, 10);
             g.fillRect(1002, 214, 8, 8);
             g.fillRect(700, 210, 9, 10);
-            Color glass = new Color(137, 30, 143);
+            Color glass = new Color(137, 30, 143,150);
             g.setColor(Color.white);
             g.setFont(points);
             g.drawString("" + score, 15, 40);
@@ -611,7 +633,9 @@ if (deadPlayer){
         // if the mouse has moved positions
         @Override
         public void mouseMoved(MouseEvent e) {
-
+      Point p = MouseInfo.getPointerInfo().getLocation();
+      int mouseX = p.x;
+      int mouseY = p.y;
         }
     }
 
