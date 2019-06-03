@@ -46,8 +46,8 @@ public class FinalProject extends JComponent implements ActionListener {
     int desiredFPS = 60;
     int desiredTime = Math.round((1000 / desiredFPS));
 
-    int[] highscores = new int[3];
-    String[] highscoreNames = new String[3];
+    int[] highscores = new int[5];
+    String[] highscoreNames = new String[5];
 
     // timer used to run the game loop
     // this is what keeps our time running smoothly :)
@@ -64,6 +64,7 @@ public class FinalProject extends JComponent implements ActionListener {
     boolean shoot = false;
     boolean enter = false;
     boolean spark1 = false;
+    boolean led = false;
     boolean spark2 = false;
     boolean spark3 = false;
     boolean spark4 = false;
@@ -73,10 +74,20 @@ public class FinalProject extends JComponent implements ActionListener {
     boolean spark8 = false;
     boolean deadBomb1 = true;
     boolean deadBomb2 = true;
-    boolean deadPlayer = true;
+    boolean deadPlayer = false;
     boolean intro = true;
     boolean timer = true;
     boolean scoreChecker = true;
+    boolean click = false;
+    boolean leaderBoard = false;
+    boolean fool = true;
+    boolean zed = false;
+    boolean layzor = false;
+    boolean help = false;
+    boolean sColour = false;
+    boolean credits = false;
+    boolean escape = false;
+    int secret = 0;
     int score = 0;
     int p = 0;
     int x = 0;
@@ -87,17 +98,23 @@ public class FinalProject extends JComponent implements ActionListener {
     int fire2 = 0;
     int check = 0;
     int sparks = 0;
+    int superWeapon = 1;
+    int counter = 0;
     long millis = System.currentTimeMillis();
     long time = millis;
     int respawnbomb1 = 0;
     int respawnbomb2 = 0;
     int deathline = (int) (Math.random() * 6);
     JFrame frame = new JFrame("FrameDemo");
-//to do list  2. spinner enemy 3. homing enemy 4. back and forth friing enemy 7. add high score board 8. title screen 9. super weapon 10. if time permits add items
+//to do list 1. fix points 2. spinner enemy 3. homing enemy 4. back and forth friing enemy  5. if time permits add items
     Font gameOverFont = new Font("Copperplate Gothic Bold", Font.BOLD, 82);
     Font gameOverLine = new Font("Copperplate Gothic Bold", Font.BOLD, 30);
     Font titleScreen = new Font("Copperplate Gothic Bold", Font.BOLD, 120);
     Font points = new Font("Franklin Gothic Demi Cond", Font.BOLD, 30);
+    Font symbol = new Font("ESRI Enviro Hazard Analysis", Font.BOLD, 30);
+    Color words = new Color(51, 64, 183);
+    Color glass = new Color(137, 30, 143);
+    Color superSaiyan = new Color(255, 238, 0);
 
     // GAME VARIABLES END HERE    
     // Constructor to create the Frame and place the panel in
@@ -139,46 +156,7 @@ public class FinalProject extends JComponent implements ActionListener {
     // NOTE: This is already double buffered!(helps with framerate/speed)
     @Override
     public void paintComponent(Graphics g) {
-        if (intro){
-            deadBomb1 = true;
-            deadBomb2 = true;
-            g.setColor(Color.black);
-            g.fillRect(0, 0, 1200, 800);
-            Color words = new Color(51, 64, 183);
-            g.setColor(words);
-            g.setFont(titleScreen);
-            g.drawString("Zone Zero", 200,350);
-            g.setColor(Color.RED);
-            g.fill3DRect(300, 500, 150, 80, up);
-            g.setColor(Color.RED);
-            g.fill3DRect(700, 500, 150, 80, up);
-            g.setColor(words);
-            g.setFont(gameOverLine);
-            g.drawString("Start", 320,550);
-            g.drawString("High", 730,535);
-            g.drawString("Scores", 710,565);
-           // g.setFont(gameOverLine);
-         //   g.drawString("Press Enter to Start", 380,500);
-            int[] xPoints = {0, 50, 250};
-            int[] yPoints = {800, 800, 400};
-            g.fillPolygon(xPoints, yPoints, 3);
-            int[] xPoints2 = {1200, 1150, 950};
-            int[] yPoints2 = {800, 800, 400};
-            g.fillPolygon(xPoints2, yPoints2, 3);
-            int[] xPoints3 = {75, 125, 280};
-            int[] yPoints3 = {800, 800, 400};
-            g.fillPolygon(xPoints3, yPoints3, 3);
-            int[] xPoints4 = {1125, 1075, 920};
-            int[] yPoints4 = {800, 800, 400};
-            g.fillPolygon(xPoints4, yPoints4, 3);
-            int[] xPoints5 = {-75, -25, 220};
-            int[] yPoints5 = {800, 800, 400};
-            g.fillPolygon(xPoints5, yPoints5, 3);
-            int[] xPoints6 = {1275, 1225, 980};
-            int[] yPoints6 = {800, 800, 400};
-            g.fillPolygon(xPoints6, yPoints6, 3);
-        }
-        if (deadPlayer && intro == false) {
+        if (deadPlayer) {
             deadBomb1 = true;
             deadBomb2 = true;
             x = 0;
@@ -187,34 +165,40 @@ public class FinalProject extends JComponent implements ActionListener {
             g.fillRect(0, 0, 1200, 800);
             g.setColor(Color.white);
             g.setFont(gameOverFont);
-            g.drawString("GAME OVER", 250, 400);
+            g.drawString("GAME OVER", 280, 350);
             g.setFont(gameOverLine);
             if (deathline == 0) {
-                g.drawString("My 3 Year Old cousin did better Than You", 180, 450);
+                g.drawString("My 3 Year Old cousin did better Than You", 220, 400);
             }
             if (deathline == 1) {
-                g.drawString("Try Shooting", 420, 450);
+                g.drawString("Try Shooting", 450, 400);
             }
             if (deathline == 2) {
-                g.drawString("Hint: Don't Die", 400, 450);
+                g.drawString("Hint: Don't Die", 450, 400);
             }
             if (deathline == 3) {
-                g.drawString("You're The Best ... At Dying", 300, 450);
+                g.drawString("You're The Best ... At Dying", 340, 400);
             }
             if (deathline == 4) {
-                g.drawString("Congratulations, You Are Better Than 0% Of Players", 100, 450);
+                g.drawString("Congratulations, You Are Better Than 0% Of Players", 130, 400);
             }
             if (deathline == 5) {
-                g.drawString("I Expected you to fail, but not this early", 180, 450);
+                g.drawString("I Expected you to fail, but not this early", 220, 400);
             }
-            g.drawString("Press \"Enter\" To Play Again", 280, 550);
+            g.drawString("Press \"Enter\" To Play Again", 330, 500);
             if (enter) {
                 deadPlayer = false;
+                score = 0;
+            }
+            g.drawString("Press \"Escape\" To Return To Menu", 280, 550);
+            if (escape) {
+                intro = true;
                 score = 0;
             }
         }
         //draw ship
         if (deadPlayer == false) {
+            fool = true;
             deathline = (int) (Math.random() * 6);
             g.setColor(Color.BLACK);
             g.fillRect(0, 0, 1200, 800);
@@ -233,20 +217,31 @@ public class FinalProject extends JComponent implements ActionListener {
             g.fillRect(536, 524, 10, 10);
             g.fillRect(1002, 214, 8, 8);
             g.fillRect(700, 210, 9, 10);
-            Color glass = new Color(137, 30, 143,150);
             g.setColor(Color.white);
             g.setFont(points);
             g.drawString("" + score, 15, 40);
             g.setColor(glass);
+            if(sColour){
+                g.setColor(superSaiyan);
+            }
             g.fillOval(575 + x, 575 + y, 50, 50);
             g.setColor(Color.DARK_GRAY);
+            if(sColour){
+                g.setColor(superSaiyan);
+            }
             g.fillRect(575 + x, 650 + y, 50, 50);
             g.setColor(Color.darkGray);
+            if(sColour){
+                g.setColor(superSaiyan);
+            }
             g.fillRect(545 + x, 595 + y, 8, 80);
             g.fillRect(648 + x, 595 + y, 8, 80);
             g.fillRect(562 + x, 580 + y, 8, 70);
             g.fillRect(630 + x, 580 + y, 8, 70);
             g.setColor(Color.GRAY);
+            if(sColour){
+                g.setColor(superSaiyan);
+            }
             g.fillRect(575 + x, 600 + y, 50, 70);
             int[] xPoints = {575 + x, 575 + x, 540 + x};
             int[] yPoints = {630 + y, 670 + y, 680 + y};
@@ -255,6 +250,28 @@ public class FinalProject extends JComponent implements ActionListener {
             int[] yPoints2 = {630 + y, 670 + y, 680 + y};
             g.fillPolygon(xPoints2, yPoints2, 3);
         }
+        if ((score / 2000) >= superWeapon && deadPlayer == false) {
+            layzor = true;
+        }
+        if (layzor) {
+            g.setFont(symbol);
+            g.setColor(glass);
+            g.drawString("_", 585 + x, 660 + y);
+            if(sColour){
+                g.setColor(superSaiyan);
+            }
+            if (zed) {
+                g.fillRect(575 + x, -400 + y, 50, 1000);
+                counter++;
+                if (counter == 80) {
+                    zed = false;
+                    counter = 0;
+                    layzor = false;
+                    superWeapon++;
+                }
+            }
+        }
+
         //check is space is pressed 
         if (space && deadPlayer == false) {
             shoot = true;
@@ -265,6 +282,9 @@ public class FinalProject extends JComponent implements ActionListener {
                 p = x;
             }
             g.setColor(Color.RED);
+            if(sColour){
+                g.setColor(superSaiyan);
+            }
             //shoot lazers
             if (shoot) {
                 if (inc >= -40) {
@@ -452,7 +472,123 @@ public class FinalProject extends JComponent implements ActionListener {
             random2 = (int) (Math.random() * 600 - 100);
             fire2 = 0;
         }
-
+        if (intro) {
+            deadBomb1 = true;
+            deadBomb2 = true;
+            g.setColor(Color.black);
+            g.fillRect(0, 0, 1200, 800);
+            g.setColor(words);
+            g.setFont(titleScreen);
+            g.drawString("Zone Zero", 200, 350);
+            g.setColor(Color.RED);
+            g.fill3DRect(300, 500, 150, 80, up);
+            g.fill3DRect(700, 500, 150, 80, up);
+            g.fill3DRect(700, 600, 150, 80, up);
+            g.fill3DRect(300, 600, 150, 80, up);
+            g.setColor(words);
+            g.setFont(gameOverLine);
+            g.drawString("Start", 320, 550);
+            g.drawString("High", 730, 535);
+            g.drawString("Scores", 710, 565);
+            g.drawString("Help", 330, 650);
+            g.drawString("Credits", 705, 650);
+            int[] xPoints = {0, 50, 250};
+            int[] yPoints = {800, 800, 400};
+            g.fillPolygon(xPoints, yPoints, 3);
+            int[] xPoints2 = {1200, 1150, 950};
+            int[] yPoints2 = {800, 800, 400};
+            g.fillPolygon(xPoints2, yPoints2, 3);
+            int[] xPoints3 = {75, 125, 280};
+            int[] yPoints3 = {800, 800, 400};
+            g.fillPolygon(xPoints3, yPoints3, 3);
+            int[] xPoints4 = {1125, 1075, 920};
+            int[] yPoints4 = {800, 800, 400};
+            g.fillPolygon(xPoints4, yPoints4, 3);
+            int[] xPoints5 = {-75, -25, 220};
+            int[] yPoints5 = {800, 800, 400};
+            g.fillPolygon(xPoints5, yPoints5, 3);
+            int[] xPoints6 = {1275, 1225, 980};
+            int[] yPoints6 = {800, 800, 400};
+            g.fillPolygon(xPoints6, yPoints6, 3);
+        }
+        if (leaderBoard) {
+            loadHighScores();
+            g.setColor(Color.black);
+            g.fillRect(0, 0, 1200, 800);
+            g.setColor(Color.white);
+            g.setFont(gameOverFont);
+            g.drawString("Leaderboard", 270, 200);
+            g.setFont(gameOverLine);
+            g.drawString("" + highscoreNames[0], 270, 300);
+            g.drawString("" + highscoreNames[1], 270, 350);
+            g.drawString("" + highscoreNames[2], 270, 400);
+            g.drawString("" + highscoreNames[3], 270, 450);
+            g.drawString("" + highscoreNames[4], 270, 500);
+            g.drawString("" + highscores[0], 850, 300);
+            g.drawString("" + highscores[1], 850, 350);
+            g.drawString("" + highscores[2], 850, 400);
+            g.drawString("" + highscores[3], 850, 450);
+            g.drawString("" + highscores[4], 850, 500);
+            g.setColor(Color.RED);
+            g.fill3DRect(550, 600, 150, 80, up);
+            g.setColor(words);
+            g.drawString("Return", 555, 650);
+            //finish
+            if (secret >= 200){
+                g.setFont(gameOverLine);
+                g.setColor(Color.white);
+                 g.drawString("Great job, Now get it to 1000.", 50,750);
+                g.drawString("L Counter: " + secret, 650, 750);
+                if (secret == 1000){
+                    leaderBoard = false;
+                    intro = false;
+                    deadBomb1 = false;
+                    deadBomb2 = false;
+                    deadPlayer = false;
+                    sColour = true;
+                }
+            }
+        }
+        if (help){
+            g.setColor(Color.black);
+            g.fillRect(0, 0, 1200, 800);
+            g.setColor(Color.white);
+            g.setFont(gameOverFont);
+            g.drawString("Help", 470, 150);
+            g.setFont(gameOverLine);
+            g.drawString("Use the arrow keys to move", 320, 220);
+            g.drawString("Use the space bar to shoot", 325, 270);
+            g.drawString("Press Z to use super weapon", 315, 320);
+            g.drawString("When a triangle appears on your ship", 240, 370);
+            g.drawString("Your super weapon is ready", 320, 420);
+            g.drawString("If you press L 200 times looking at the leaderboard", 120, 470);
+            g.drawString("Something very special will happen", 260, 520);
+            g.setColor(Color.RED);
+            g.fill3DRect(520, 600, 150, 80, up);
+            g.setColor(words);
+            g.drawString("Return", 526, 650);
+        }
+        if (credits){
+        g.setColor(Color.black);
+            g.fillRect(0, 0, 1200, 800);
+            g.setColor(Color.white);
+            g.setFont(gameOverFont);
+            g.drawString("Credits", 400, 100);
+            g.setFont(gameOverLine);
+            g.drawString("Programming:               Josh Vuksic", 50, 150);
+            g.drawString("Help when i'm stuck:   Thomas Pintier", 50, 200);
+            g.drawString("                                         Cameron Carmichael", 50, 250);
+            g.drawString("                                         Mr. Lamont", 50, 300);
+            g.drawString("Title:                               Randomwordgenerator.com", 50, 350);
+            g.drawString("Distracting me:            The internet", 50, 400);
+            g.drawString("                                         Tate Ramessar", 50, 450);
+            g.drawString("                                         Thomas Pintier", 50, 500);
+            g.drawString("                                         Myself", 50, 550);
+            g.setColor(Color.RED);
+            g.fill3DRect(540, 600, 150, 80, up);
+            g.setColor(words);
+            g.drawString("Return", 545, 650);
+    }
         // GAME DRAWING ENDS HERE
     }
 
@@ -466,25 +602,88 @@ public class FinalProject extends JComponent implements ActionListener {
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
-if (deadPlayer){
-    loadHighScores();
-            if (score > highscores[2]) {
-                if (score > highscores[1]) {
-                    if (score > highscores[0]) {
-                        highscores[0] = score;
-                        String inputValue = JOptionPane.showInputDialog("You set a new local highscore congratulations on sucking a little less, Please enter your initials");
-                        highscoreNames[0] = inputValue;
-                    }
-                    highscores[1] = score;
-                    String inputValue = JOptionPane.showInputDialog("You set a new local highscore congratulations on sucking a little less, Please enter your initials");
-                    highscoreNames[1] = inputValue;
-                }
+        if (led){
+            secret++;
+            led = false;
+        }
+        if (deadPlayer) {
+            loadHighScores();
+            if (score > highscores[0] && fool) {
+                fool = false;
+                up = false;
+                down = false;
+                left = false;
+                right = false;
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = highscores[1];
+                highscores[1] = highscores[0];
+                highscores[0] = score;
+                String inputValue = JOptionPane.showInputDialog("You set a new local highscore congratulations on sucking a little less, Please enter your initials");
+                highscoreNames[4] = highscoreNames[3];
+                highscoreNames[3] = highscoreNames[2];
+                highscoreNames[2] = highscoreNames[1];
+                highscoreNames[1] = highscoreNames[0];
+                highscoreNames[0] = inputValue;
+            }
+            if (score > highscores[1] && fool) {
+                fool = false;
+                up = false;
+                down = false;
+                left = false;
+                right = false;
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = highscores[1];
+                highscores[1] = score;
+                String inputValue = JOptionPane.showInputDialog("You set a new local highscore congratulations on sucking a little less, Please enter your initials");
+                highscoreNames[4] = highscoreNames[3];
+                highscoreNames[3] = highscoreNames[2];
+                highscoreNames[2] = highscoreNames[1];
+                highscoreNames[1] = inputValue;
+
+            }
+            if (score > highscores[2] && fool) {
+                fool = false;
+                up = false;
+                down = false;
+                left = false;
+                right = false;
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
                 highscores[2] = score;
                 String inputValue = JOptionPane.showInputDialog("You set a new local highscore congratulations on sucking a little less, Please enter your initials");
+                highscoreNames[4] = highscoreNames[3];
+                highscoreNames[3] = highscoreNames[2];
                 highscoreNames[2] = inputValue;
+
+            }
+            if (score > highscores[3] && fool) {
+                fool = false;
+                up = false;
+                down = false;
+                left = false;
+                right = false;
+                highscores[4] = highscores[3];
+                highscores[3] = score;
+                String inputValue = JOptionPane.showInputDialog("You set a new local highscore congratulations on sucking a little less, Please enter your initials");
+                highscoreNames[4] = highscoreNames[3];
+                highscoreNames[3] = inputValue;
+
+            }
+            if (score > highscores[4] && fool) {
+                fool = false;
+                up = false;
+                down = false;
+                left = false;
+                right = false;
+                highscores[4] = score;
+                String inputValue = JOptionPane.showInputDialog("You set a new local highscore congratulations on sucking a little less, Please enter your initials");
+                highscoreNames[4] = inputValue;
+
             }
             writeHighScore();
-}
+        }
         if (deadBomb1 == true) {
             fire = 0;
             respawnbomb1++;
@@ -513,24 +712,36 @@ if (deadPlayer){
         if (down) {
             if (y < 100) {
                 y += 10;
+                if(sColour){
+                y += 10;
+            }
             }
         }
         //make ship go up
         if (up) {
             if (y > -580) {
                 y -= 10;
+                if(sColour){
+                y -= 10;
+            }
             }
         }
         //make ship go left
         if (left) {
             if (x > -540) {
                 x -= 10;
+                if(sColour){
+                x -= 10;
+            }
             }
         }
         //make ship go right
         if (right) {
             if (x < 540) {
                 x += 10;
+                if(sColour){
+                x += 10;
+            }
             }
         }
 //hit detection for enemy 1 and 2
@@ -579,6 +790,26 @@ if (deadPlayer){
         if (540 + x <= 150 + random2 && 660 + x >= 150 + random2 && 575 + y <= 35 + fire2 && 680 + y >= 35 + fire2) {
             deadPlayer = true;
         }
+        //super weapon hit box
+        //(575 + x, -400 + y, 50 , 1000);
+        if (zed){
+            if (100 + random <= 575 + x && 150 + random >= 575 + x && - 28 + fire <= 575 + y) {
+            deadBomb1 = true;
+            score += 100;
+        }
+        if (100 + random <= 625 + x && 150 + random >= 625 + x && - 28 + fire <= 575 + y) {
+            deadBomb1 = true;
+            score += 100;
+        }
+        if (100 + random2 <= 575 + x && 150 + random2 >= 575 + x && - 28 + fire <= 575 + y) {
+            deadBomb2 = true;
+            score += 100;
+        }
+        if (100 + random2 <= 625 + x && 150 + random2 >= 625 + x && - 28 + fire <= 575 + y) {
+            deadBomb2 = true;
+            score += 100;
+        }
+        }
 
     }
     //540 + x to 660 + x and 575 + y to 680 + y
@@ -615,13 +846,13 @@ if (deadPlayer){
         // if a mouse button has been pressed down
         @Override
         public void mousePressed(MouseEvent e) {
-
+            click = true;
         }
 
         // if a mouse button has been released
         @Override
         public void mouseReleased(MouseEvent e) {
-
+            
         }
 
         // if the scroll wheel has been moved
@@ -633,9 +864,48 @@ if (deadPlayer){
         // if the mouse has moved positions
         @Override
         public void mouseMoved(MouseEvent e) {
-      Point p = MouseInfo.getPointerInfo().getLocation();
-      int mouseX = p.x;
-      int mouseY = p.y;
+            Point tip = MouseInfo.getPointerInfo().getLocation();
+            int mouseX = tip.x;
+            int mouseY = tip.y;
+            if (mouseX >= 300 && mouseX <= 450 && mouseY >= 500 && mouseY <= 580 && click && intro) {
+                intro = false;
+                deadBomb1 = false;
+                deadBomb2 = false;
+                deadPlayer = false;
+                click = false;
+            }
+            else if (mouseX >= 700 && mouseX <= 850 && mouseY >= 500 && mouseY <= 580 && click && intro) {
+                leaderBoard = true;
+                click = false;
+            }
+            else if (mouseX >= 300 && mouseX <= 450 && mouseY >= 600 && mouseY <= 680 && click && intro) {
+                help = true;
+                click = false;
+            }
+            else if (mouseX >= 550 && mouseX <= 700 && mouseY >= 600 && mouseY <= 680 && click && leaderBoard) {
+                leaderBoard = false;
+                click = false;
+            }
+            else if (mouseX >= 520 && mouseX <= 670 && mouseY >= 600 && mouseY <= 680 && click && help) {
+                help = false;
+                click = false;
+            }
+            else if (mouseX >= 520 && mouseX <= 670 && mouseY >= 600 && mouseY <= 680 && click && help) {
+                help = false;
+                click = false;
+            }
+            else if (mouseX >= 700 && mouseX <= 850 && mouseY >= 600 && mouseY <= 680 && click && intro) {
+                credits = true;
+                click = false;
+            }
+            else if (mouseX >= 540 && mouseX <= 690 && mouseY >= 600 && mouseY <= 680 && click && credits) {
+                credits = false;
+                click = false;
+            }
+            else if (click){
+                click = false;
+            }
+            //g.fill3DRect(300, 500, 150, 80, up g.fill3DRect(700, 500, 150, 80, up);
         }
     }
 
@@ -662,6 +932,9 @@ if (deadPlayer){
                 if (key == KeyEvent.VK_ENTER) {
                     enter = true;
                 }
+                if (key == KeyEvent.VK_ESCAPE) {
+                    escape = true;
+                }
             }
             if (key == KeyEvent.VK_SPACE) {
                 if (timer) {
@@ -670,6 +943,17 @@ if (deadPlayer){
                 timer = false;
 
             }
+            if (layzor){
+                if (key == KeyEvent.VK_Z){
+                    zed = true;
+                }
+            }
+                if (leaderBoard){
+                if (key == KeyEvent.VK_L){
+                    
+                    led = true;
+                }
+        }
         }
 
         // if a key has been released
@@ -693,6 +977,9 @@ if (deadPlayer){
             }
             if (key == KeyEvent.VK_ENTER) {
                 enter = false;
+            }
+            if (key == KeyEvent.VK_ESCAPE) {
+                escape = false;
             }
         }
     }
