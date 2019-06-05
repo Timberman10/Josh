@@ -54,8 +54,9 @@ public class FinalProject extends JComponent implements ActionListener {
     Timer gameTimer;
 
     // YOUR GAME VARIABLES WOULD GO HERE
-    int random2 = (int) (Math.random() * 600 - 100);
-    int random = (int) (Math.random() * 1400 + 650);
+    int random3 = (int) (Math.random() * 800 + 450);
+    int random2 = (int) (Math.random() * 400 - 50);
+    int random = (int) (Math.random() * 1400 + 850);
     boolean down = false;
     boolean up = false;
     boolean left = false;
@@ -74,6 +75,7 @@ public class FinalProject extends JComponent implements ActionListener {
     boolean spark8 = false;
     boolean deadBomb1 = true;
     boolean deadBomb2 = true;
+    boolean deadBomb3 = true;
     boolean deadPlayer = false;
     boolean intro = true;
     boolean timer = true;
@@ -88,7 +90,7 @@ public class FinalProject extends JComponent implements ActionListener {
     boolean credits = false;
     boolean escape = false;
     int secret = 0;
-    int score = 0;
+    int score = -100;
     int p = 0;
     int x = 0;
     int y = 0;
@@ -96,17 +98,22 @@ public class FinalProject extends JComponent implements ActionListener {
     int inc2 = 0;
     int fire = 0;
     int fire2 = 0;
+    int fire3 = 0;
     int check = 0;
     int sparks = 0;
     int superWeapon = 1;
     int counter = 0;
     long millis = System.currentTimeMillis();
     long time = millis;
-    int respawnbomb1 = 0;
-    int respawnbomb2 = 0;
+    int respawnBomb1 = 0;
+    int respawnBomb2 = 0;
+    int respawnBomb3 = 0;
+    boolean issues = true;
+    boolean issues2 = true;
+    boolean issues3 = true;
     int deathline = (int) (Math.random() * 6);
     JFrame frame = new JFrame("FrameDemo");
-//to do list 1. fix points 2. spinner enemy 3. homing enemy 4. back and forth friing enemy  5. if time permits add items
+//to do list  2. spinner enemy 3. homing enemy 4. back and forth friing enemy  5. if time permits add items
     Font gameOverFont = new Font("Copperplate Gothic Bold", Font.BOLD, 82);
     Font gameOverLine = new Font("Copperplate Gothic Bold", Font.BOLD, 30);
     Font titleScreen = new Font("Copperplate Gothic Bold", Font.BOLD, 120);
@@ -159,6 +166,7 @@ public class FinalProject extends JComponent implements ActionListener {
         if (deadPlayer) {
             deadBomb1 = true;
             deadBomb2 = true;
+            deadBomb3 = true;
             x = 0;
             y = 0;
             g.setColor(Color.black);
@@ -188,12 +196,12 @@ public class FinalProject extends JComponent implements ActionListener {
             g.drawString("Press \"Enter\" To Play Again", 330, 500);
             if (enter) {
                 deadPlayer = false;
-                score = 0;
+                score = -100;
             }
             g.drawString("Press \"Escape\" To Return To Menu", 280, 550);
             if (escape) {
                 intro = true;
-                score = 0;
+                score = -100;
             }
         }
         //draw ship
@@ -221,17 +229,17 @@ public class FinalProject extends JComponent implements ActionListener {
             g.setFont(points);
             g.drawString("" + score, 15, 40);
             g.setColor(glass);
-            if(sColour){
+            if (sColour) {
                 g.setColor(superSaiyan);
             }
             g.fillOval(575 + x, 575 + y, 50, 50);
             g.setColor(Color.DARK_GRAY);
-            if(sColour){
+            if (sColour) {
                 g.setColor(superSaiyan);
             }
             g.fillRect(575 + x, 650 + y, 50, 50);
             g.setColor(Color.darkGray);
-            if(sColour){
+            if (sColour) {
                 g.setColor(superSaiyan);
             }
             g.fillRect(545 + x, 595 + y, 8, 80);
@@ -239,7 +247,7 @@ public class FinalProject extends JComponent implements ActionListener {
             g.fillRect(562 + x, 580 + y, 8, 70);
             g.fillRect(630 + x, 580 + y, 8, 70);
             g.setColor(Color.GRAY);
-            if(sColour){
+            if (sColour) {
                 g.setColor(superSaiyan);
             }
             g.fillRect(575 + x, 600 + y, 50, 70);
@@ -253,11 +261,11 @@ public class FinalProject extends JComponent implements ActionListener {
         if ((score / 2000) >= superWeapon && deadPlayer == false) {
             layzor = true;
         }
-        if (layzor) {
+        if (layzor && deadPlayer == false) {
             g.setFont(symbol);
             g.setColor(glass);
             g.drawString("_", 585 + x, 660 + y);
-            if(sColour){
+            if (sColour) {
                 g.setColor(superSaiyan);
             }
             if (zed) {
@@ -282,7 +290,7 @@ public class FinalProject extends JComponent implements ActionListener {
                 p = x;
             }
             g.setColor(Color.RED);
-            if(sColour){
+            if (sColour) {
                 g.setColor(superSaiyan);
             }
             //shoot lazers
@@ -383,7 +391,7 @@ public class FinalProject extends JComponent implements ActionListener {
             spark8 = false;
             sparks++;
         } else {
-            random = (int) (Math.random() * 1400 + 650);
+            random = (int) (Math.random() * 1400 + 850);
             fire = 0;
         }
 
@@ -469,12 +477,98 @@ public class FinalProject extends JComponent implements ActionListener {
             sparks++;
         } //reset bomb enemies
         else {
-            random2 = (int) (Math.random() * 600 - 100);
+            random2 = (int) (Math.random() * 400 - 50);
             fire2 = 0;
+        }
+        //create dive bomb enemy 3
+        if (fire3 < 800 && deadBomb3 == false) {
+            g.setColor(Color.DARK_GRAY);
+            g.fillRect(110 + random3, 10 + fire3, 30, 10);
+            g.setColor(Color.CYAN);
+            int[] xPoints3 = {100 + random3, 125 + random3, 150 + random3};
+            int[] yPoints3 = {20 + fire3, 35 + fire3, 20 + fire3};
+            g.fillPolygon(xPoints3, yPoints3, 3);
+            g.setColor(Color.ORANGE);
+            int[] xPoints4 = {110 + random3, 125 + random3, 140 + random3};
+            int[] yPoints4 = {10 + fire3, 0 + fire3, 10 + fire3};
+            check = sparks % 2;
+            //create fire out back of ship
+            if (check == 0) {
+                spark1 = true;
+            }
+            check = sparks % 5;
+            if (check == 0) {
+                spark2 = true;
+            }
+            check = sparks % 3;
+            if (check == 0) {
+                spark3 = true;
+            }
+            check = sparks % 15;
+            if (check == 0) {
+                spark4 = true;
+            }
+            check = sparks % 4;
+            if (check == 0) {
+                spark5 = true;
+            }
+            check = sparks % 6;
+            if (check == 0) {
+                spark6 = true;
+            }
+            check = sparks % 20;
+            if (check == 0) {
+                spark7 = true;
+            }
+            check = sparks % 7;
+            if (check == 0) {
+                spark8 = true;
+            }
+            if (spark1) {
+                g.fillRect(112 + random3, 0 + fire3, 10, 8);
+            }
+            if (spark2) {
+                g.fillRect(133 + random3, 0 + fire3, 9, 11);
+            }
+            if (spark3) {
+                g.fillRect(123 + random3, -3 + fire3, 13, 7);
+            }
+            if (spark4) {
+                g.fillRect(119 + random3, -1 + fire3, 6, 8);
+            }
+            if (spark5) {
+                g.fillRect(115 + random3, -4 + fire3, 10, 8);
+            }
+            if (spark6) {
+                g.fillRect(127 + random3, -4 + fire3, 7, 9);
+            }
+            if (spark7) {
+                g.fillRect(118 + random3, -7 + fire3, 11, 11);
+            }
+            if (spark8) {
+                g.fillRect(117 + random3, -5 + fire3, 14, 12);
+            }
+            g.fillPolygon(xPoints4, yPoints4, 3);
+            fire3 += 6;
+            //turn off fire
+            spark1 = false;
+            spark2 = false;
+            spark3 = false;
+            spark4 = false;
+            spark5 = false;
+            spark6 = false;
+            spark7 = false;
+            spark8 = false;
+            sparks++;
+        } //reset bomb enemies
+        else {
+            random3 = (int) (Math.random() * 800 + 450);
+            fire3 = 0;
         }
         if (intro) {
             deadBomb1 = true;
             deadBomb2 = true;
+            deadBomb3 = true;
             g.setColor(Color.black);
             g.fillRect(0, 0, 1200, 800);
             g.setColor(words);
@@ -534,12 +628,12 @@ public class FinalProject extends JComponent implements ActionListener {
             g.setColor(words);
             g.drawString("Return", 555, 650);
             //finish
-            if (secret >= 200){
+            if (secret >= 200) {
                 g.setFont(gameOverLine);
                 g.setColor(Color.white);
-                 g.drawString("Great job, Now get it to 1000.", 50,750);
+                g.drawString("Great job, Now get it to 1000.", 50, 750);
                 g.drawString("L Counter: " + secret, 650, 750);
-                if (secret == 1000){
+                if (secret == 1000) {
                     leaderBoard = false;
                     intro = false;
                     deadBomb1 = false;
@@ -549,7 +643,7 @@ public class FinalProject extends JComponent implements ActionListener {
                 }
             }
         }
-        if (help){
+        if (help) {
             g.setColor(Color.black);
             g.fillRect(0, 0, 1200, 800);
             g.setColor(Color.white);
@@ -568,8 +662,8 @@ public class FinalProject extends JComponent implements ActionListener {
             g.setColor(words);
             g.drawString("Return", 526, 650);
         }
-        if (credits){
-        g.setColor(Color.black);
+        if (credits) {
+            g.setColor(Color.black);
             g.fillRect(0, 0, 1200, 800);
             g.setColor(Color.white);
             g.setFont(gameOverFont);
@@ -588,7 +682,7 @@ public class FinalProject extends JComponent implements ActionListener {
             g.fill3DRect(540, 600, 150, 80, up);
             g.setColor(words);
             g.drawString("Return", 545, 650);
-    }
+        }
         // GAME DRAWING ENDS HERE
     }
 
@@ -602,7 +696,7 @@ public class FinalProject extends JComponent implements ActionListener {
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
-        if (led){
+        if (led) {
             secret++;
             led = false;
         }
@@ -686,21 +780,30 @@ public class FinalProject extends JComponent implements ActionListener {
         }
         if (deadBomb1 == true) {
             fire = 0;
-            respawnbomb1++;
-            random = 50000;
+            respawnBomb1++;
         }
         if (deadBomb2 == true) {
             fire2 = 0;
-            respawnbomb2++;
-            random2 = 50000;
+            respawnBomb2++;
         }
-        if (respawnbomb1 == 100) {
+        if (deadBomb3 == true) {
+            fire3 = 0;
+            respawnBomb3++;
+        }
+        if (respawnBomb1 == 100) {
             deadBomb1 = false;
-            respawnbomb1 = 0;
+            respawnBomb1 = 0;
+            issues = true;
         }
-        if (respawnbomb2 == 100) {
+        if (respawnBomb2 == 100) {
             deadBomb2 = false;
-            respawnbomb2 = 0;
+            respawnBomb2 = 0;
+            issues2 = true;
+        }
+        if (respawnBomb3 == 100) {
+            deadBomb3 = false;
+            respawnBomb3 = 0;
+            issues3 = true;
         }
         if (timer == false) {
             millis = System.currentTimeMillis();
@@ -712,70 +815,74 @@ public class FinalProject extends JComponent implements ActionListener {
         if (down) {
             if (y < 100) {
                 y += 10;
-                if(sColour){
-                y += 10;
-            }
+                if (sColour) {
+                    y += 10;
+                }
             }
         }
         //make ship go up
         if (up) {
             if (y > -580) {
                 y -= 10;
-                if(sColour){
-                y -= 10;
-            }
+                if (sColour) {
+                    y -= 10;
+                }
             }
         }
         //make ship go left
         if (left) {
             if (x > -540) {
                 x -= 10;
-                if(sColour){
-                x -= 10;
-            }
+                if (sColour) {
+                    x -= 10;
+                }
             }
         }
         //make ship go right
         if (right) {
             if (x < 540) {
                 x += 10;
-                if(sColour){
-                x += 10;
-            }
+                if (sColour) {
+                    x += 10;
+                }
             }
         }
 //hit detection for enemy 1 and 2
         if (100 + random <= 545 + p && 150 + random >= 545 + p && -28 + fire <= inc - 32 && 40 + fire >= inc - 32 && shoot == true) {
             deadBomb1 = true;
-            score += 50;
         }
         if (100 + random <= 648 + p && 150 + random >= 648 + p && -28 + fire <= inc - 32 && 40 + fire >= inc - 32 && shoot == true) {
             deadBomb1 = true;
-            score += 50;
         }
         if (100 + random2 <= 545 + p && 150 + random2 >= 545 + p && -28 + fire2 <= inc - 32 && 40 + fire2 >= inc - 32 && shoot == true) {
             deadBomb2 = true;
-            score += 50;
         }
         if (100 + random2 <= 648 + p && 150 + random2 >= 648 + p && -28 + fire2 <= inc - 32 && 40 + fire2 >= inc - 32 && shoot == true) {
             deadBomb2 = true;
-            score += 50;
+        }
+        if (100 + random3 <= 545 + p && 150 + random3 >= 545 + p && -28 + fire3 <= inc - 32 && 40 + fire3 >= inc - 32 && shoot == true) {
+            deadBomb3 = true;
+        }
+        if (100 + random3 <= 648 + p && 150 + random3 >= 648 + p && -28 + fire3 <= inc - 32 && 40 + fire3 >= inc - 32 && shoot == true) {
+            deadBomb3 = true;
         }
         if (100 + random <= 553 + p && 150 + random >= 553 + p && -28 + fire <= inc - 32 && 40 + fire >= inc - 32 && shoot == true) {
             deadBomb1 = true;
-            score += 50;
         }
         if (100 + random <= 656 + p && 150 + random >= 656 + p && -28 + fire <= inc - 32 && 40 + fire >= inc - 32 && shoot == true) {
             deadBomb1 = true;
-            score += 50;
         }
         if (100 + random2 <= 553 + p && 150 + random2 >= 553 + p && -28 + fire2 <= inc - 32 && 40 + fire2 >= inc - 32 && shoot == true) {
             deadBomb2 = true;
-            score += 50;
         }
         if (100 + random2 <= 656 + p && 150 + random2 >= 656 + p && -28 + fire2 <= inc - 32 && 40 + fire2 >= inc - 32 && shoot == true) {
             deadBomb2 = true;
-            score += 50;
+        }
+        if (100 + random3 <= 553 + p && 150 + random3 >= 553 + p && -28 + fire3 <= inc - 32 && 40 + fire3 >= inc - 32 && shoot == true) {
+            deadBomb3 = true;
+        }
+        if (100 + random3 <= 656 + p && 150 + random3 >= 656 + p && -28 + fire3 <= inc - 32 && 40 + fire3 >= inc - 32 && shoot == true) {
+            deadBomb3 = true;
         }
         //add hit box on you
         if (540 + x <= 100 + random && 660 + x >= 100 + random && 575 + y <= 35 + fire && 680 + y >= 35 + fire) {
@@ -790,29 +897,50 @@ public class FinalProject extends JComponent implements ActionListener {
         if (540 + x <= 150 + random2 && 660 + x >= 150 + random2 && 575 + y <= 35 + fire2 && 680 + y >= 35 + fire2) {
             deadPlayer = true;
         }
+        if (540 + x <= 100 + random3 && 660 + x >= 100 + random3 && 575 + y <= 35 + fire3 && 680 + y >= 35 + fire3) {
+            deadPlayer = true;
+        }
+        if (540 + x <= 150 + random3 && 660 + x >= 150 + random3 && 575 + y <= 35 + fire3 && 680 + y >= 35 + fire3) {
+            deadPlayer = true;
+        }
         //super weapon hit box
         //(575 + x, -400 + y, 50 , 1000);
-        if (zed){
+        if (zed) {
             if (100 + random <= 575 + x && 150 + random >= 575 + x && - 28 + fire <= 575 + y) {
-            deadBomb1 = true;
+                deadBomb1 = true;
+            }
+            if (100 + random <= 625 + x && 150 + random >= 625 + x && - 28 + fire <= 575 + y) {
+                deadBomb1 = true;
+            }
+            if (100 + random2 <= 575 + x && 150 + random2 >= 575 + x && - 28 + fire2 <= 575 + y) {
+                deadBomb2 = true;
+            }
+            if (100 + random2 <= 625 + x && 150 + random2 >= 625 + x && - 28 + fire2 <= 575 + y) {
+                deadBomb2 = true;
+            }
+            if (100 + random3 <= 575 + x && 150 + random3 >= 575 + x && - 28 + fire3 <= 575 + y) {
+                deadBomb3 = true;
+            }
+            if (100 + random3 <= 625 + x && 150 + random3 >= 625 + x && - 28 + fire3 <= 575 + y) {
+                deadBomb3 = true;
+            }
+        }
+        if (deadBomb1 && issues && intro == false && deadPlayer == false) {
             score += 100;
+            random = 50000;
+            issues = false;
         }
-        if (100 + random <= 625 + x && 150 + random >= 625 + x && - 28 + fire <= 575 + y) {
-            deadBomb1 = true;
+        if (deadBomb2 && issues2 && intro == false && deadPlayer == false) {
             score += 100;
+            random2 = 50000;
+            issues2 = false;
         }
-        if (100 + random2 <= 575 + x && 150 + random2 >= 575 + x && - 28 + fire <= 575 + y) {
-            deadBomb2 = true;
+        if (deadBomb3 && issues3 && intro == false && deadPlayer == false) {
             score += 100;
+            random3 = 50000;
+            issues3 = false;
         }
-        if (100 + random2 <= 625 + x && 150 + random2 >= 625 + x && - 28 + fire <= 575 + y) {
-            deadBomb2 = true;
-            score += 100;
-        }
-        }
-
     }
-    //540 + x to 660 + x and 575 + y to 680 + y
 
     public void writeHighScore() {
         try {
@@ -852,7 +980,7 @@ public class FinalProject extends JComponent implements ActionListener {
         // if a mouse button has been released
         @Override
         public void mouseReleased(MouseEvent e) {
-            
+
         }
 
         // if the scroll wheel has been moved
@@ -873,39 +1001,30 @@ public class FinalProject extends JComponent implements ActionListener {
                 deadBomb2 = false;
                 deadPlayer = false;
                 click = false;
-            }
-            else if (mouseX >= 700 && mouseX <= 850 && mouseY >= 500 && mouseY <= 580 && click && intro) {
+            } else if (mouseX >= 700 && mouseX <= 850 && mouseY >= 500 && mouseY <= 580 && click && intro) {
                 leaderBoard = true;
                 click = false;
-            }
-            else if (mouseX >= 300 && mouseX <= 450 && mouseY >= 600 && mouseY <= 680 && click && intro) {
+            } else if (mouseX >= 300 && mouseX <= 450 && mouseY >= 600 && mouseY <= 680 && click && intro) {
                 help = true;
                 click = false;
-            }
-            else if (mouseX >= 550 && mouseX <= 700 && mouseY >= 600 && mouseY <= 680 && click && leaderBoard) {
+            } else if (mouseX >= 550 && mouseX <= 700 && mouseY >= 600 && mouseY <= 680 && click && leaderBoard) {
                 leaderBoard = false;
                 click = false;
-            }
-            else if (mouseX >= 520 && mouseX <= 670 && mouseY >= 600 && mouseY <= 680 && click && help) {
+            } else if (mouseX >= 520 && mouseX <= 670 && mouseY >= 600 && mouseY <= 680 && click && help) {
                 help = false;
                 click = false;
-            }
-            else if (mouseX >= 520 && mouseX <= 670 && mouseY >= 600 && mouseY <= 680 && click && help) {
+            } else if (mouseX >= 520 && mouseX <= 670 && mouseY >= 600 && mouseY <= 680 && click && help) {
                 help = false;
                 click = false;
-            }
-            else if (mouseX >= 700 && mouseX <= 850 && mouseY >= 600 && mouseY <= 680 && click && intro) {
+            } else if (mouseX >= 700 && mouseX <= 850 && mouseY >= 600 && mouseY <= 680 && click && intro) {
                 credits = true;
                 click = false;
-            }
-            else if (mouseX >= 540 && mouseX <= 690 && mouseY >= 600 && mouseY <= 680 && click && credits) {
+            } else if (mouseX >= 540 && mouseX <= 690 && mouseY >= 600 && mouseY <= 680 && click && credits) {
                 credits = false;
                 click = false;
-            }
-            else if (click){
+            } else if (click) {
                 click = false;
             }
-            //g.fill3DRect(300, 500, 150, 80, up g.fill3DRect(700, 500, 150, 80, up);
         }
     }
 
@@ -943,17 +1062,17 @@ public class FinalProject extends JComponent implements ActionListener {
                 timer = false;
 
             }
-            if (layzor){
-                if (key == KeyEvent.VK_Z){
+            if (layzor) {
+                if (key == KeyEvent.VK_Z) {
                     zed = true;
                 }
             }
-                if (leaderBoard){
-                if (key == KeyEvent.VK_L){
-                    
+            if (leaderBoard) {
+                if (key == KeyEvent.VK_L) {
+
                     led = true;
                 }
-        }
+            }
         }
 
         // if a key has been released
