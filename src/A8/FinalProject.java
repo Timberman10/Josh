@@ -1089,21 +1089,27 @@ public class FinalProject extends JComponent implements ActionListener {
         if (zed) {
             if (100 + random <= 575 + x && 150 + random >= 575 + x && - 28 + fire <= 575 + y) {
                 deadBomb1 = true;
+                score+=100;
             }
             if (100 + random <= 625 + x && 150 + random >= 625 + x && - 28 + fire <= 575 + y) {
                 deadBomb1 = true;
+                score+=100;
             }
             if (100 + random2 <= 575 + x && 150 + random2 >= 575 + x && - 28 + fire2 <= 575 + y) {
                 deadBomb2 = true;
+                score+=100;
             }
             if (100 + random2 <= 625 + x && 150 + random2 >= 625 + x && - 28 + fire2 <= 575 + y) {
                 deadBomb2 = true;
+                score+=100;
             }
             if (100 + random3 <= 575 + x && 150 + random3 >= 575 + x && - 28 + fire3 <= 575 + y) {
                 deadBomb3 = true;
+                score+=100;
             }
             if (100 + random3 <= 625 + x && 150 + random3 >= 625 + x && - 28 + fire3 <= 575 + y) {
                 deadBomb3 = true;
+                score+=100;
             }
         }
         //fix issues 
